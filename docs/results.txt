@@ -1,0 +1,22 @@
+iverilog -o sim_s rtl/sync_fifo.v tb/tb_sync_fifo.v && vvp sim_s
+VCD info: dumpfile dump.vcd opened for output.
+PASS: all checks OK
+tb/tb_sync_fifo.v:50: $finish called at 380000 (1ps)
+iverilog -o sim_a rtl/async_fifo.v tb/tb_async_fifo.v && vvp sim_a
+VCD info: dumpfile async_fifo.vcd opened for output.
+wfull seen: 1 | rempty seen: 1
+PASS: 100 words transferred in order
+tb/tb_async_fifo.v:73: $finish called at 3267000 (1ps)
+iverilog -DSWAP -o sim_b rtl/async_fifo.v tb/tb_async_fifo.v && vvp sim_b
+VCD info: dumpfile async_fifo.vcd opened for output.
+wfull seen: 1 | rempty seen: 1
+PASS: 100 words transferred in order
+tb/tb_async_fifo.v:73: $finish called at 2860000 (1ps)
+iverilog -o sim_c rtl/async_fifo.v tb/tb_async_fifo_corner.v && vvp sim_c
+VCD info: dumpfile corner.vcd opened for output.
+PASS: test 1
+PASS: test 2
+PASS: test 3
+PASS: test 4
+ALL CORNER TESTS PASSED
+tb/tb_async_fifo_corner.v:134: $finish called at 3724000 (1ps)
